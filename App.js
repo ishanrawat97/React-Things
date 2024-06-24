@@ -1,24 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const title = (
-    <h1
-        className="head"
-        tableIndex="5"
-    >
-        One for All
-    </h1>
-);
+const elem = <span>React Element</span>;
 //React Functional Component
 const HeadingComponent = () => (
     <div>
-        {title}
         <h1 className="head">
             Starting-a Line-a Priss Uratra!
         </h1>
     </div>
 );
+const title = (
+    <h1
+        className="head"
+        tableIndex="5"
+    >
+        {elem}
+        One for All
+        <HeadingComponent />
+    </h1>
+);
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(
+    document.getElementById("root")
+);
 
-root.render(<HeadingComponent/>);
+root.render(title);
