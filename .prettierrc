@@ -1,0 +1,6 @@
+{
+    "tabWidth": 4,
+    "singleAttributePerLine": true,
+    "parser": "babel",
+    "printWidth": 50
+}
