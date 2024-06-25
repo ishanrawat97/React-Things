@@ -23,3 +23,24 @@ React Starting Line
 - Tree shaking - remove unused code for you
 - Lazy dev builds
 - Different dev and prod bundles
+
+#Food ordering app - Ishan da Dhaba
+/*
+*Header
+*   - Logo
+*   - Nav Items
+*Body
+*   - Seach component
+*   - RestaurantContainer
+*        - RestaurantCard - 
+*            Image, 
+*            Name of res, 
+*            star rating, 
+*            cuisine, 
+*            delivery time
+*Footer
+*   - Copyright
+*   - Links
+*   - Address 
+*   - Contact
+*/
