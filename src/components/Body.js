@@ -5,7 +5,8 @@ import Shimmer from "./Shimmer";
 
 const Body = () => {
     const [listOfRestuarant, setListOfRestaurant] = useState([]);
-
+    const [filteredListOfRestuarant, setFilteredListOfRestuarant] = useState([]);
+    const [searchText, setSearchText] = useState("");
     useEffect(() => {
         fetchData();
     }, []);
@@ -16,24 +17,47 @@ const Body = () => {
         );
 
         const json = await data.json();
-        console.log(json);
         setListOfRestaurant(
             json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
         );
+        setFilteredListOfRestuarant(
+            json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+        );
     };
-    
+
     return listOfRestuarant.length === 0 ? (
         <Shimmer />
     ) : (
         <div className="body">
             <div className="filter">
+                <div className="search">
+                    <input
+                        type="text"
+                        className="search-box"
+                        value={searchText}
+                        onChange={(e) => {
+                            setSearchText(e.target.value);
+                        }}
+                    />
+                    <button
+                        className="search-btn"
+                        onClick={() => {
+                            const filteredRestaurant = listOfRestuarant.filter((res) =>
+                                res.info.name.toLowerCase().includes(searchText.toLowerCase())
+                            );
+                            setFilteredListOfRestuarant(filteredRestaurant);
+                        }}
+                    >
+                        Search
+                    </button>
+                </div>
                 <button
                     className="filter-btn"
                     onClick={() => {
                         const filteredList = listOfRestuarant.filter(
                             (res) => res.info.avgRating > 4.2
                         );
-                        setListOfRestaurant(filteredList);
+                        setFilteredListOfRestuarant(filteredList);
                     }}
                 >
                     Top rated Restaurants
@@ -41,15 +65,14 @@ const Body = () => {
                 <button
                     className="filter-btn"
                     onClick={() => {
-                        setListOfRestaurant([]);
-                        return fetchData();
+                        setFilteredListOfRestuarant(listOfRestuarant);
                     }}
                 >
                     Show All Restaurants
                 </button>
             </div>
             <div className="res-container">
-                {listOfRestuarant.map((restaurant) => (
+                {filteredListOfRestuarant.map((restaurant) => (
                     <RestaurantCard
                         key={restaurant.info.id}
                         resData={restaurant}
