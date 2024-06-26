@@ -41,6 +41,7 @@ const Body = () => {
                 <button
                     className="filter-btn"
                     onClick={() => {
+                        setListOfRestaurant([]);
                         return fetchData();
                     }}
                 >
