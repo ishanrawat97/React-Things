@@ -81,3 +81,6 @@
 .search-btn {
     cursor: pointer;
 }
+.error-container {
+    text-align: center;
+}
